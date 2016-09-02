@@ -1,2 +1,2 @@
 var facebookCleaner = new FacebookCleaner();
-facebookCleaner.clean();
+setInterval(facebookCleaner.clean, 3000);
