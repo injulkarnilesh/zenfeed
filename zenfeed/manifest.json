@@ -7,7 +7,6 @@
 
   "browser_action": {
      "default_icon": "icon.png",
-     "default_popup": "popup.html",
      "default_title" : "Zen Feed"
   },
 
@@ -16,7 +15,7 @@
       "matches": ["https://www.facebook.com/"],
       "css": ["styles.css"],
       "js": ["jquery-3.1.0.min.js", "cleanfacebook.js", "cleanfeed.js"],
-      "run_at": "document_end"
+      "run_at": "document_start"
     }
   ]
 }

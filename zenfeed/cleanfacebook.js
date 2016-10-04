@@ -4,23 +4,28 @@ function FacebookCleaner() {
 	var feed_att_val = 'fbfeed_story';
 	var feedPostSelector = "div[" + feed_att + "='" + feed_att_val + "']";
 
-	var words_dont_care_about = [ 'liked', 'likes', 'commented', 'like', 'reacted' ];
-	var annonyingFeedSelector = words_dont_care_about.reduce(function(selector, word, index) {
+	var wordsDontCareAbout = [ 'liked', 'likes', 'commented', 'like', 'reacted' ];
+	var annonyingFeedSelector = wordsDontCareAbout.reduce(function(selector, word, index) {
 		if(index) {
 			selector = selector + ', '
 		}
 		selector = selector + 'h5:contains("'+ word +'")';
 		return selector;
 	}, '');
+	var suggestedPost = 'Suggested Post';
+	var suggestedPostSelector = 'span:contains("' + suggestedPost + '")';
+
+	var selectorsForUnZenFeeds = [annonyingFeedSelector, suggestedPostSelector];
+
+	var selectorToRemoveFeeds = selectorsForUnZenFeeds.join(', ');
 
 	this.clean = function() {
 		var cleanedFeedCount = 0;
 		var feedPosts = jQuery(feedPostSelector);
 		
 		feedPosts.each(function(index, element) {
-			var annoyingFeedSelectorFound = $(this).find(annonyingFeedSelector);
-			if(annoyingFeedSelectorFound.length) {
-				$(this).css('border', 'solid 1px red');
+			var unZenFeedSelectorsFound = $(this).find(selectorToRemoveFeeds);
+			if(unZenFeedSelectorsFound.length) {
 				$(this).remove();
 				cleanedFeedCount++;
 			}
