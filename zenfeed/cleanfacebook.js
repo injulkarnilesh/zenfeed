@@ -15,7 +15,10 @@ function FacebookCleaner() {
 	var suggestedPost = 'Suggested Post';
 	var suggestedPostSelector = 'span:contains("' + suggestedPost + '")';
 
-	var selectorsForUnZenFeeds = [annonyingFeedSelector, suggestedPostSelector];
+	var videoYouMayLike = 'A video you may like';
+	var suggestedVideoSelector = 'div:contains("' + videoYouMayLike + '")';
+
+	var selectorsForUnZenFeeds = [annonyingFeedSelector, suggestedPostSelector, suggestedVideoSelector];
 
 	var selectorToRemoveFeeds = selectorsForUnZenFeeds.join(', ');
 
